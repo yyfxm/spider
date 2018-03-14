@@ -52,9 +52,10 @@ DEFAULT_REQUEST_HEADERS = {
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'zhihu_user.middlewares.ZhihuUserDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+    'zhihu_user.middlewares.ZhihuUserDownloaderMiddleware': 543,
+    'zhihu_user.middlewares.ProxyMiddleware':900,
+}
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
@@ -88,3 +89,11 @@ DEFAULT_REQUEST_HEADERS = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+IPLIST = [
+    "http://58.200.73.253:808",
+    "http://182.42.244.205:808",
+    "http://112.74.62.69:8081",
+    "http://222.66.90.104:80",
+    "http://113.108.204.74:8888",
+    "http://139.199.79.251:808",
+]

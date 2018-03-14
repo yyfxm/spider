@@ -6,7 +6,7 @@
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
-
+import random
 
 class ZhihuUserSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
@@ -101,3 +101,14 @@ class ZhihuUserDownloaderMiddleware(object):
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+
+class ProxyMiddleware(object):
+    def __init__(self,iplist):
+        self.iplist = iplist
+    @classmethod
+    def from_crawler(cls,crawler):
+        return cls(crawler.settings.getlist('IPLIST'))
+    def process_request(self,request,spider):
+        proxy = random.choice(self.iplist)
+        print("this is ip:" + proxy)
+        request.meta['proxy'] = proxy
